@@ -1,0 +1,139 @@
+#Titulo{
+    font-size:xx-large;
+    text-align: center;
+    border: 2px solid #EEEEEE;
+    background-color: #393E46;
+    border-radius: 10px;
+    margin-top: 50px;
+    margin-left:25% ;
+    margin-right: 25%;
+    color: #EEEEEE;
+}
+
+
+
+
+
+#Conteiner{
+
+    display: flex;
+    margin-top: 100px;
+    background-color: #222831;
+    flex-wrap: wrap;
+    justify-content:space-around;
+    align-items: center; 
+}
+
+
+
+#linha{
+    
+    background-color: aqua;
+}
+
+#GraphConteiner{
+    display: flex;
+    flex-direction: column;
+    background-color: #393E46;
+    align-items: center;
+    justify-content: space-around;
+    width: 800px;
+    height: 700px;
+    border-radius: 20px;
+    border: 3px solid #EEEEEE;
+
+}
+
+
+#ClubeEscudo{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+
+}
+#clube{
+    align-self: center;
+    padding-left: 10%;
+    font-size: x-large;
+    color:#EEEEEE;
+    text-align: center;
+}
+
+#apaga{
+    align-self: flex-end;
+    justify-self: flex-end;
+}
+
+body{
+    background-color: #222831;
+    margin: 0 auto;
+    width: 100%;
+    font-family: sans-serif;
+
+}
+
+#TabelaConteiner{
+    display: flex;
+    height: 800px;
+    background-color: #393E46;
+    border-radius: 10px;
+    align-self: center; 
+    padding: 10px;  
+    border: 2px solid #EEEEEE;
+}
+
+
+
+table{
+    
+    border-collapse: collapse;
+    border-style: solid;
+    border-color: #00ADB5;
+    color: #EEEEEE;
+}
+
+table thead{
+    background-color: #222831;
+}
+
+
+table td{
+    
+    border: 2px solid black;
+    text-align:center;
+    padding-left: 4px; padding-right: 4px;
+    background-color:#222831;
+    border-color: #00ADB5;
+    border-width: 1px;
+}
+
+table th{
+    border: 2px solid #00ADB5;
+    padding: 5px;
+    border-width: 1px;
+    
+}
+
+td input {
+    border-radius: 5px;
+    background-color: #00ADB5;
+    font-family: monospace;
+    color: #f5f5f5;
+    border-width: 1px;
+    
+}
+
+#obs{
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+    color: #EEEEEE;
+    width: 20%;
+    margin-left: 1%;
+    
+}
+
+#selc{
+    color: blue;
+}
+

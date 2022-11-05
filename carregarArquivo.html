@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insira os dados</title>
+    <style>
+        header {
+            
+            width: 30%;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            border: 5px solid #EEEEEE ;
+            border-right: 0px ;
+
+        }
+        body{
+            display: flex;
+            justify-content:center;
+            margin-top: 20%;
+            background-color: #222831;
+        }
+        .texto-header {
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: center;  
+            align-items: center;
+            font-size: 24px;
+            color: #EEEEEE;
+            background-color: #393E46;
+        }
+        #conteiner{
+            display: flex;
+            align-items: center;
+            justify-content:center;
+            background-color: #00ADB5; 
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            border: 5px solid #EEEEEE;
+            border-left: 2px solid ;
+
+        }
+       #botao{
+            margin-left: 25%;
+            border-color: black;
+       }
+       
+       
+       
+    </style>
+
+</head>
+<body>
+    <header>
+        <div class="texto-header">
+          <p>Insira os dados aqui</p>
+        </div>
+      </header>
+    <div id="conteiner">
+        <div id="botao">
+            <input type="file" name="file" id="file" value="Insera os dados">   
+        </div>
+    </div>
+
+    <script>
+        alert("INSIRA O ARQUIVO -> rodadasBrasileirão.txt");
+        let jogos = new Array(33);
+        for (let r = 0; r < 33; r++) {
+        jogos[r] = new Array(10);
+        };  
+        let mudar = 0;
+        document.getElementById('file').onchange = function(){
+            
+            let file = this.files[0];
+            let reader = new FileReader();
+            reader.readAsText(file);
+            reader.onload = function(){
+                let dadosSTRING = (this.result).replace(/\r/g,"").split(/\n/);
+                mudar +=1;
+                for (let i in dadosSTRING){
+                    jogos[i] = (dadosSTRING[i]).split(/,/);
+                };
+                localStorage.setItem("jogos",JSON.stringify(jogos));
+                if (mudar != 0){
+                    window.location.href = "index.html";
+                };
+                jogos = [];
+            };
+        };
+        
+    </script>
+    
+</body>
+</html>
