@@ -1,3 +1,5 @@
+// Para instalar a biblioteca Chart.js, basta digitar "npm install chart.js" no terminal.
+
 
 // --------------------------------------------------------------------- //
 // ##################################################################### //
@@ -8,29 +10,27 @@
 // Ideia desse Padrão de Projeto:
 // Toda vez que um evento acontece, os observadores desse evento serão notificados e executados.
 
-class Observador{
+  class Observador{
 
-  constructor(){
-    this.inscritos = [];
-  }
-
-  adiciona(funcao){
-    this.inscritos.push(funcao)
-  }
-
-  remove(){
-    this.inscritos = this.inscritos.filter((f)=> f !== funcao);
-  }
-
-  notifica(id,historicoTimes,){
-
-    for (let i = 0;i<this.inscritos.length;i++){
-      this.inscritos[i](id,historicoTimes, );
+    constructor(){
+      this.inscritos = [];
     }
 
-  }
+    adiciona(funcao){
+      this.inscritos.push(funcao)
+    }
 
-}
+    remove(){
+      this.inscritos = this.inscritos.filter((f)=> f !== funcao);
+    }
+
+    notifica(id,mapa_dados){
+
+      for (let i = 0;i<this.inscritos.length;i++){
+          this.inscritos[i](id,mapa_dados);
+      }
+    }
+  }
 
 // --------------------------------------------------------------------- //
 // ##################################################################### //
@@ -40,14 +40,10 @@ class Observador{
 
 class Time{
 
-  nome;sigla;
-  n_rodadas = 33;
-  historico = [];
-  stats = [];
-
   constructor(nome,sigla){
     this.nome = nome;
     this.sigla = sigla;
+    this.n_rodadas = 33;
     this.historico = new Array(this.n_rodadas);
     this.stats = new Array(8);
     for (let i = 0;i<8;i++){
@@ -157,7 +153,7 @@ class Dados extends Time {
       return this.times[this.array_siglas.indexOf(sigla)];
     }
 
-    getTimeByNome(nome){
+    static getTimeByNome(nome){
       return this.times[this.array_nomes.indexOf(nome)];
     }
 
@@ -194,7 +190,7 @@ class Dados extends Time {
 
         } else {
 
-            if (gol_time1 < gol_time2) {
+            if (gol_time1 < gol_time2) {  
 
               time2.setPontos(time2.getPontos() + 3);//contabiliza pontos
               time2.setPartidas(time2.getPartidas() + 1);//contabiliza partidas
@@ -247,15 +243,16 @@ class Dados extends Time {
       for (let id of ids){
         let tSigla = chaves_ordenadas[timeIndice]
         let tObjt = mapa_dados.getTimeBySigla(tSigla)
+        let stats = tObjt.getStats();
         document.getElementById(id).innerHTML = tSigla;
-        document.getElementById(id+"PTS").innerHTML = tObjt.getPontos();
-        document.getElementById(id+"Partidas").innerHTML = tObjt.getPartidas();
-        document.getElementById(id+"Vitorias").innerHTML = tObjt.getVitorias();
-        document.getElementById(id+"Empates").innerHTML = tObjt.getEmpates();
-        document.getElementById(id+"Derrotas").innerHTML = tObjt.getDerrotas();
-        document.getElementById(id+"Saldo").innerHTML = tObjt.getSaldo();
-        document.getElementById(id+"ProGols").innerHTML = tObjt.getGolsPro();
-        document.getElementById(id+"ContraGols").innerHTML = tObjt.getGolsContra();
+        document.getElementById(id+"PTS").innerHTML = stats[0] //tObjt.getPontos();
+        document.getElementById(id+"Partidas").innerHTML = stats[1]//tObjt.getPartidas();
+        document.getElementById(id+"Vitorias").innerHTML =stats[2] //tObjt.getVitorias();
+        document.getElementById(id+"Empates").innerHTML = stats[3]//tObjt.getEmpates();
+        document.getElementById(id+"Derrotas").innerHTML = stats[4]//tObjt.getDerrotas();
+        document.getElementById(id+"Saldo").innerHTML = stats[5]//tObjt.getSaldo();
+        document.getElementById(id+"ProGols").innerHTML = stats[6 ]//tObjt.getGolsPro();
+        document.getElementById(id+"ContraGols").innerHTML = stats[7]//tObjt.getGolsContra();
         timeIndice += 1;
       };
     };  
@@ -321,7 +318,7 @@ class OrdenaTimes extends Time{
 
 class Historico{
 
-    times_ordenados;
+    times_ordenados;    
 
     constructor(array_siglas){
       this.times_ordenados = new OrdenaTimes(array_siglas);
@@ -342,104 +339,115 @@ class Historico{
 };
 
 
-// --------------------------------------------------------------------- //
-// ##################################################################### //
-//                               MAIN                                    //
-// ##################################################################### //
-// --------------------------------------------------------------------- //
 
-let jogos = JSON.parse(localStorage.getItem('jogos'))
+// --------------------------------------------------------------------- //
+// ##################################################################### //
+//                               Classe CriaGrafico                      //
+// ##################################################################### //
+// --------------------------------------------------------------------- //
+class CriaGrafico{
+  constructor(){
+    this.myChart = null;
+    this.posAnt = this.posAnt;
+  }
+
+  criaGrafico(id,mapa_dados){
+
+    let img;
+    let pos = ((id.id)[0]).toUpperCase() + (id.id).slice(1);
+
+    if (this.myChart != null){
+      // Limpa o grafico e arruma os valores do botoes.
+      this.myChart.destroy();
+      this.myChart = null;
+
+      document.getElementById("button"+pos).value = "Detalhes";
+      if (document.getElementById("button"+this.posAnt).value == "Voltar"){
+        document.getElementById("button"+this.posAnt).value = "Detalhes";
+      };
+      
+      img = document.getElementById("escudo");
+      document.getElementById("ClubeEscudo").removeChild(img);  
+      document.getElementById("clube").innerHTML = "Clique em Detalhes!";
+
+    }
+    else{
+
+      // Desenha o grafico
+      document.getElementById("clube").innerHTML = "";
+      let time = id.innerText;
+      this.posAnt = pos;
+      img = document.createElement("img");
+      img.src = "Escudos/"+time+".png";
+      img.style.width = "48px"; 
+      img.style.height = "48px";
+      img.id = "escudo";
+      document.getElementById("clube").innerHTML = mapa_dados.getTimeBySigla(time).getNome();
+      document.getElementById('ClubeEscudo').appendChild(img);
+      
+      
+      let posicoes = mapa_dados.getTimeBySigla(time).getHistorico();
+      let rodadas = ['1', '2', '3', '4', '5',
+        '6', '7', '8', '8', '9', '10', '11', '12', '13', '14', '15', '16',
+        '17', '18', '19', '20', '21','22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33'];
+
+      const data = {
+
+        labels: rodadas,
+        datasets: [{
+          label: time,
+          backgroundColor: 'rgb(0, 173, 181)',
+          borderColor: 'rgb(0, 173, 181)',
+          pointBackgroundColor:'rgb(57, 62, 70)',
+          pointBorderColor:'rgb(0, 173, 181)',  
+          data: posicoes,
+          pointRadius:5,
+          borderColor:"rgba(0,173,181,1.000)"
+        }]
+      };
+      const config = {
+        type: 'line',
+        data: data,
+        options: {
+          responsive:true,
+          scales: {
+            y: {
+              reverse: true,
+              max: 20,
+              min: 0,
+              ticks: {color:"gray"},
+              grid:{borderColor:'gray',color:"gray"}
+            },
+            x:{
+              title:{display:true,text:"Rodadas X Posição",font:{weight:"bold",size:18},color:"white"},
+              grid:{borderColor:'gray',color:"gray"},
+              ticks: {color:"gray"}
+            }
+          }
+        }
+      };
+      this.myChart = new Chart(document.getElementById('canva'),config);
+      document.getElementById("button"+pos).value = "Voltar";
+    };
+  };
+};
+
+// --------------------------------------------------------------------- //
+// ##################################################################### //
+//                                "MAIN"                                 //
+// ##################################################################### //
+// --------------------------------------------------------------------- //
+let jogos = JSON.parse(localStorage.getItem('jogos')); // recupero os jogos que foram armazenados no navegador
 let mapa_dados = new Dados();
 mapa_dados.computaDados();
 mapa_dados.escrevaDados(mapa_dados.chaves_ordenadas,mapa_dados);
-let myChart = null;
-let observador = new Observador();
-observador.adiciona(criaGrafico);
-let posAnt;
+  let observador = new Observador();
+let grafico = new CriaGrafico();
+observador.adiciona(grafico.criaGrafico);
 
 
-function detalhesClicado(id,mapa_dados,){
+function detalhesClicado(id,mapa_dados){
   observador.notifica(id,mapa_dados,);
 }
 
-// Equivalente às classes e métodos que criam o gráfico no código em JAVA.
-function criaGrafico(id,mapa_dados) {
-
-  let img;
-  let pos = ((id.id)[0]).toUpperCase() + (id.id).slice(1);
-
-  if (myChart != null){
-    // Limpa o grafico e arruma os valores do botoes.
-    myChart.destroy();
-    myChart = null;
-
-    document.getElementById("button"+pos).value = "Detalhes";
-    if (document.getElementById("button"+posAnt).value == "Voltar"){
-      document.getElementById("button"+posAnt).value = "Detalhes";
-    };
-    
-    img = document.getElementById("escudo");
-    document.getElementById("ClubeEscudo").removeChild(img);  
-    document.getElementById("clube").innerHTML = "Clique em Detalhes!";
-
-  }
-  else{
-
-    // Desenha o grafico
-    document.getElementById("clube").innerHTML = "";
-    let time = id.innerText;
-    posAnt = pos;
-    img = document.createElement("img");
-    img.src = "Escudos/"+time+".png";
-    img.style.width = "48px"; 
-    img.style.height = "48px";
-    img.id = "escudo";
-    document.getElementById("clube").innerHTML = mapa_dados.getTimeBySigla(time).getNome();
-    document.getElementById('ClubeEscudo').appendChild(img);
-    
-    
-    let posicoes = mapa_dados.getTimeBySigla(time).getHistorico();
-    let rodadas = ['1', '2', '3', '4', '5',
-      '6', '7', '8', '8', '9', '10', '11', '12', '13', '14', '15', '16',
-      '17', '18', '19', '20', '21','22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33'];
-
-    const data = {
-
-      labels: rodadas,
-      datasets: [{
-        label: time,
-        backgroundColor: 'rgb(0, 173, 181)',
-        borderColor: 'rgb(0, 173, 181)',
-        pointBackgroundColor:'rgb(57, 62, 70)',
-        pointBorderColor:'rgb(0, 173, 181)',  
-        data: posicoes,
-        pointRadius:5,
-        borderColor:"rgba(0,173,181,1.000)"
-      }]
-    };
-    const config = {
-      type: 'line',
-      data: data,
-      options: {
-        responsive:true,
-        scales: {
-          y: {
-            reverse: true,
-            max: 20,
-            min: 0,
-            ticks: {color:"gray"},
-            grid:{borderColor:'gray',color:"gray"}
-          },
-          x:{
-            title:{display:true,text:"Rodadas X Posição",font:{weight:"bold",size:18},color:"white"},
-            grid:{borderColor:'gray',color:"gray"},
-            ticks: {color:"gray"}
-          }
-        }
-      }
-    };
-    myChart = new Chart(document.getElementById('canva'),config);
-    document.getElementById("button"+pos).value = "Voltar";
-  };
-};
 
