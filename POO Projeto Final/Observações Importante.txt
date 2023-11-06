@@ -1,0 +1,20 @@
+JAVA:
+
+- Caso o programa não ache o arquivo das rodadas e/ou dos escudos,
+basta clicar com o botão direito em cima do arquivo escolhido e selecionar "Copy Relative Path".
+
+- Ao tentar executar a Main com outros arquivos no Vscode ele pode não encontrar o caminho,
+não sei exatemante o motivo. Mas fica registrado esse alerta*.
+
+- O arquivo com as rodadas é chamado "rodadas_data.3.txt".
+
+
+
+JavaScript:
+
+- Lembrar de baixar o Charts.JS. Basta digitar "npm install chart.js" no próprio terminal do VS Code.
+
+- Caso o programa não ache o arquivo dos escudos,
+basta clicar com o botão direito em cima do arquivo escolhido e selecionar "Copy Relative Path".
+
+- O arquivo com as rodadas é chamado "rodadasBrasileirão.txt".

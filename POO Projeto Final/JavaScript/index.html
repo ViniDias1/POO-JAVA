@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pr-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brasileirão Série A 2022</title>
+    <link rel="stylesheet" type="text/css" href="estilo.css">
+</head>
+
+
+<body>
+    <!-- LER BASE DE DADOS -->
+    
+    <div id="Titulo">Apresentação dos dados do Campeonato Brasileiro de Futebol 2022</div>
+    
+    
+    <div id="Conteiner">
+        
+        <div id="TabelaConteiner">
+            
+            <table class="tabela" >
+                <thead>
+                    <tr>
+                        <td></td>
+                        <th>Clube</th>
+                        <th>PTS</th>
+                        <th>PJ</th>
+                        <th>VIT</th>
+                        <th>EMP</th> 
+                        <th>DER</th> 
+                        <th>SG</th> 
+                        <th>GM</th> 
+                        <th>GC</th> 
+                        <td></td>
+                        
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>1º</td>
+                        <td id="primeiro"></td>
+                        <td id="primeiroPTS"></td>
+                        <td id="primeiroPartidas"></td>
+                        <td id="primeiroVitorias"></td>
+                        <td id="primeiroEmpates"></td>
+                        <td id="primeiroDerrotas"></td>
+                        <td id="primeiroSaldo"></td>
+                        <td id="primeiroProGols"></td>
+                        <td id="primeiroContraGols"></td>
+                        <td><input type="button" id='buttonPrimeiro' value="Detalhes" onclick="detalhesClicado(primeiro,main)"></td>
+                    </tr>
+
+                    <tr>
+                        <td>2º</td>
+                        <td id="segundo"></td>
+                        <td id="segundoPTS"></td>
+                        <td id="segundoPartidas"></td>
+                        <td id="segundoVitorias"></td>
+                        <td id="segundoEmpates"></td>
+                        <td id="segundoDerrotas"></td>
+                        <td id="segundoSaldo"></td>
+                        <td id="segundoProGols"></td>
+                        <td id="segundoContraGols"></td>
+                        <td><input type="button" id='buttonSegundo' value="Detalhes" onclick="detalhesClicado(segundo,main)"></td>
+
+                    </tr>
+
+                    <tr>
+                        <td>3º</td>
+                        <td id="terceiro"></td>
+                        <td id="terceiroPTS"></td>
+                        <td id="terceiroPartidas"></td>
+                        <td id="terceiroVitorias"></td>
+                        <td id="terceiroEmpates"></td>
+                        <td id="terceiroDerrotas"></td>
+                        <td id="terceiroSaldo"></td>
+                        <td id="terceiroProGols"></td>
+                        <td id="terceiroContraGols"></td>
+                        <td><input type="button" id='buttonTerceiro' value="Detalhes" onclick="detalhesClicado(terceiro,main)"></td>
+
+                    </tr>
+                    <tr>
+                        <td>4º</td>
+                        <td id="quarto"></td>
+                        <td id="quartoPTS"></td>
+                        <td id="quartoPartidas"></td>
+                        <td id="quartoVitorias"></td>
+                        <td id="quartoEmpates"></td>
+                        <td id="quartoDerrotas"></td>
+                        <td id="quartoSaldo"></td>
+                        <td id="quartoProGols"></td>
+                        <td id="quartoContraGols"></td>
+                        <td><input type="button" id='buttonQuarto' value="Detalhes" onclick="detalhesClicado(quarto,main)"></td>
+
+                    </tr>
+                    <tr>
+                        <td>5º</td>
+                        <td id="quinto"></td>
+                        <td id="quintoPTS"></td>
+                        <td id="quintoPartidas"></td>
+                        <td id="quintoVitorias"></td>
+                        <td id="quintoEmpates"></td>
+                        <td id="quintoDerrotas"></td>
+                        <td id="quintoSaldo"></td>
+                        <td id="quintoProGols"></td>
+                        <td id="quintoContraGols"></td>
+                        <td><input type="button" id='buttonQuinto' value="Detalhes" onclick="detalhesClicado(quinto,main)"></td>
+
+                    </tr>
+                    <tr>
+                        <td>6º</td>
+                        <td id="sexto"></td>
+                        <td id="sextoPTS"></td>
+                        <td id="sextoPartidas"></td>
+                        <td id="sextoVitorias"></td>
+                        <td id="sextoEmpates"></td>
+                        <td id="sextoDerrotas"></td>
+                        <td id="sextoSaldo"></td>
+                        <td id="sextoProGols"></td>
+                        <td id="sextoContraGols"></td>
+                        <td><input type="button" id='buttonSexto' value="Detalhes" onclick="detalhesClicado(sexto,main)"></td>
+
+                    </tr>
+                    <tr>
+                        <td>7º</td>
+                        <td id="setimo"></td>
+                        <td id="setimoPTS"></td>
+                        <td id="setimoPartidas"></td>
+                        <td id="setimoVitorias"></td>
+                        <td id="setimoEmpates"></td>
+                        <td id="setimoDerrotas"></td>
+                        <td id="setimoSaldo"></td>
+                        <td id="setimoProGols"></td>
+                        <td id="setimoContraGols"></td>
+                        <td><input type="button" id='buttonSetimo' value="Detalhes" onclick="detalhesClicado(setimo,main)"></td>
+
+                    </tr>
+                    <tr>
+                        <td>8º</td>
+                        <td id="oitavo"></td>
+                        <td id="oitavoPTS"></td>
+                        <td id="oitavoPartidas"></td>
+                        <td id="oitavoVitorias"></td>
+                        <td id="oitavoEmpates"></td>
+                        <td id="oitavoDerrotas"></td>
+                        <td id="oitavoSaldo"></td>
+                        <td id="oitavoProGols"></td>
+                        <td id="oitavoContraGols"></td>
+                        <td><input type="button" id='buttonOitavo' value="Detalhes" onclick="detalhesClicado(oitavo,main)"></td>
+
+                    </tr>
+                    <tr>
+                        <td>9º</td>
+                        <td id="nono"></td>
+                        <td id="nonoPTS"></td>
+                        <td id="nonoPartidas"></td>
+                        <td id="nonoVitorias"></td>
+                        <td id="nonoEmpates"></td>
+                        <td id="nonoDerrotas"></td>
+                        <td id="nonoSaldo"></td>
+                        <td id="nonoProGols"></td>
+                        <td id="nonoContraGols"></td>
+                        <td><input type="button" id='buttonNono' value="Detalhes" onclick="detalhesClicado(nono,main)"></td>
+
+                    </tr>
+                    <tr>
+                        <td>10º</td>
+                        <td id="decimo"></td>
+                        <td id="decimoPTS"></td>
+                        <td id="decimoPartidas"></td>
+                        <td id="decimoVitorias"></td>
+                        <td id="decimoEmpates"></td>
+                        <td id="decimoDerrotas"></td>
+                        <td id="decimoSaldo"></td>
+                        <td id="decimoProGols"></td>
+                        <td id="decimoContraGols"></td>
+                        <td><input type="button" id='buttonDecimo' value="Detalhes" onclick="detalhesClicado(decimo,main)"></td>
+
+                    </tr>
+                    <tr>
+                        <td>11º</td>
+                        <td id="decimoPrimeiro"></td>
+                        <td id="decimoPrimeiroPTS"></td>
+                        <td id="decimoPrimeiroPartidas"></td>
+                        <td id="decimoPrimeiroVitorias"></td>
+                        <td id="decimoPrimeiroEmpates"></td>
+                        <td id="decimoPrimeiroDerrotas"></td>
+                        <td id="decimoPrimeiroSaldo"></td>
+                        <td id="decimoPrimeiroProGols"></td>
+                        <td id="decimoPrimeiroContraGols"></td>
+                        <td><input type="button" id='buttonDecimoPrimeiro' value="Detalhes" onclick="detalhesClicado(decimoPrimeiro,main)"></td>
+
+                    </tr>
+                    <tr>
+                        <td>12º</td>
+                        <td id="decimoSegundo"></td>
+                        <td id="decimoSegundoPTS"></td>
+                        <td id="decimoSegundoPartidas"></td>
+                        <td id="decimoSegundoVitorias"></td>
+                        <td id="decimoSegundoEmpates"></td>
+                        <td id="decimoSegundoDerrotas"></td>
+                        <td id="decimoSegundoSaldo"></td>
+                        <td id="decimoSegundoProGols"></td>
+                        <td id="decimoSegundoContraGols"></td>
+                        <td><input type="button" id='buttonDecimoSegundo' value="Detalhes" onclick="detalhesClicado(decimoSegundo,main)"></td>
+
+                    </tr>
+                    <tr>
+                        <td>13º</td>
+                        <td id="decimoTerceiro"></td>
+                        <td id="decimoTerceiroPTS"></td>
+                        <td id="decimoTerceiroPartidas"></td>
+                        <td id="decimoTerceiroVitorias"></td>
+                        <td id="decimoTerceiroEmpates"></td>
+                        <td id="decimoTerceiroDerrotas"></td>
+                        <td id="decimoTerceiroSaldo"></td>
+                        <td id="decimoTerceiroProGols"></td>
+                        <td id="decimoTerceiroContraGols"></td>
+                        <td><input type="button" id='buttonDecimoTerceiro' value="Detalhes" onclick="detalhesClicado(decimoTerceiro,main)"></td>
+
+                    </tr>
+                    <tr>
+                        <td>14º</td>
+                        <td id="decimoQuarto"></td>
+                        <td id="decimoQuartoPTS"></td>
+                        <td id="decimoQuartoPartidas"></td>
+                        <td id="decimoQuartoVitorias"></td>
+                        <td id="decimoQuartoEmpates"></td>
+                        <td id="decimoQuartoDerrotas"></td>
+                        <td id="decimoQuartoSaldo"></td>
+                        <td id="decimoQuartoProGols"></td>
+                        <td id="decimoQuartoContraGols"></td>
+                        <td><input type="button" id='buttonDecimoQuarto' value="Detalhes" onclick="detalhesClicado(decimoQuarto,main)"></td>
+
+                    </tr>
+                    <tr>
+                        <td>15º</td>
+                        <td id="decimoQuinto"></td>
+                        <td id="decimoQuintoPTS"></td>
+                        <td id="decimoQuintoPartidas"></td>
+                        <td id="decimoQuintoVitorias"></td>
+                        <td id="decimoQuintoEmpates"></td>
+                        <td id="decimoQuintoDerrotas"></td>
+                        <td id="decimoQuintoSaldo"></td>
+                        <td id="decimoQuintoProGols"></td>
+                        <td id="decimoQuintoContraGols"></td>
+                        <td><input type="button" id='buttonDecimoQuinto' value="Detalhes" onclick="detalhesClicado(decimoQuinto,main)"></td>
+
+                    </tr>
+                    <tr>
+                        <td>16º</td>
+                        <td id="decimoSexto"></td>
+                        <td id="decimoSextoPTS"></td>
+                        <td id="decimoSextoPartidas"></td>
+                        <td id="decimoSextoVitorias"></td>
+                        <td id="decimoSextoEmpates"></td>
+                        <td id="decimoSextoDerrotas"></td>
+                        <td id="decimoSextoSaldo"></td>
+                        <td id="decimoSextoProGols"></td>
+                        <td id="decimoSextoContraGols"></td>
+                        <td><input type="button" id='buttonDecimoSexto' value="Detalhes" onclick="detalhesClicado(decimoSexto,main)"></td>
+
+                    </tr>
+                    <tr>
+                        <td>17º</td>
+                        <td id="decimoSetimo"></td>
+                        <td id="decimoSetimoPTS"></td>
+                        <td id="decimoSetimoPartidas"></td>
+                        <td id="decimoSetimoVitorias"></td>
+                        <td id="decimoSetimoEmpates"></td>
+                        <td id="decimoSetimoDerrotas"></td>
+                        <td id="decimoSetimoSaldo"></td>
+                        <td id="decimoSetimoProGols"></td>
+                        <td id="decimoSetimoContraGols"></td>
+                        <td><input type="button" id='buttonDecimoSetimo' value="Detalhes" onclick="detalhesClicado(decimoSetimo,main)"></td>
+
+                    </tr>
+                    <tr>
+                        <td>18º</td>
+                        <td id="decimoOitavo"></td>
+                        <td id="decimoOitavoPTS"></td>
+                        <td id="decimoOitavoPartidas"></td>
+                        <td id="decimoOitavoVitorias"></td>
+                        <td id="decimoOitavoEmpates"></td>
+                        <td id="decimoOitavoDerrotas"></td>
+                        <td id="decimoOitavoSaldo"></td>
+                        <td id="decimoOitavoProGols"></td>
+                        <td id="decimoOitavoContraGols"></td>
+                        <td><input type="button" id='buttonDecimoOitavo' value="Detalhes" onclick="detalhesClicado(decimoOitavo,main)"></td>
+
+                    </tr>
+                    <tr>
+                        <td>19º</td>
+                        <td id="decimoNono"></td>
+                        <td id="decimoNonoPTS"></td>
+                        <td id="decimoNonoPartidas"></td>
+                        <td id="decimoNonoVitorias"></td>
+                        <td id="decimoNonoEmpates"></td>
+                        <td id="decimoNonoDerrotas"></td>
+                        <td id="decimoNonoSaldo"></td>
+                        <td id="decimoNonoProGols"></td>
+                        <td id="decimoNonoContraGols"></td>
+                        <td><input type="button" id='buttonDecimoNono' value="Detalhes" onclick="detalhesClicado(decimoNono,main)"></td>
+
+                    </tr>
+                    <tr>
+                        <td>20º</td>
+                        <td id="vigesimo"></td>
+                        <td id="vigesimoPTS"></td>
+                        <td id="vigesimoPartidas"></td>
+                        <td id="vigesimoVitorias"></td>
+                        <td id="vigesimoEmpates"></td>
+                        <td id="vigesimoDerrotas"></td>
+                        <td id="vigesimoSaldo"></td>
+                        <td id="vigesimoProGols"></td>
+                        <td id="vigesimoContraGols"></td>
+                        <td><input type="button" id='buttonVigesimo' value="Detalhes" onclick="detalhesClicado(vigesimo,main)"></td>
+
+                    </tr>
+
+
+
+                </tbody>
+            </table>
+            
+        </div>
+        
+        <div id="GraphConteiner">
+            <div id="ClubeEscudo">
+                <!-- <div id="escudo"></div> -->
+                <div id="clube"></div>
+            </div>
+            <canvas id="canva"></canvas>
+        </div>
+    </div>
+
+    <div id="obs">
+        <p>PTS: Pontos</p>
+        <p>PJ: Partidas Jogadas</p>
+        <p>VIT: Vitorias</p>
+        <p>EMP: Empates</p>         
+        <p>DER: Derrotas</p>
+        <p>SG: Saldo de Gols</p>
+        <p>GM: Gols Marcados</p>
+        <p>GC: Gols Contra</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="Main.js"></script>
+
+</body>
+</html>
